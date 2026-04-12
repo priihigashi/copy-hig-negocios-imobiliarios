@@ -21,10 +21,19 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:20px 5%;display:flex;ali
 .nav-links a:hover,.nav-links a.active{color:var(--white)}
 .nav-cta{background:var(--gold);color:var(--white);padding:.5rem 1.4rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;white-space:nowrap;text-decoration:none;display:inline-block}
 .nav-cta:hover{background:#7a5520}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-@media(max-width:768px){.nav-links,.nav-cta-wrap{display:none!important}}
+.hamburger.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+@media(max-width:768px){
+  .nav-links{display:none!important}
+  .nav-cta,.nav-cta-wrap,nav>a.nav-cta,nav>button.nav-cta{display:none!important}
+  .hamburger{display:flex!important}
+  .logo{font-size:1.1rem!important;white-space:nowrap}
+  nav{padding:14px 4%!important}
+  .nav-dropdown{right:0;left:auto;min-width:180px;border-top:2px solid var(--gold)}
+  .nav-dropdown a{font-size:.78rem;padding:.65rem 1.2rem;letter-spacing:.08em}
+  .nav-dropdown .dropdown-cta{margin:.4rem .8rem 0;padding:.55rem .8rem;font-size:.75rem}
+}}
 
 /* PAGE HERO */
 .page-hero{padding:140px 5% 60px;background:url('images/prop00.jpg') center/cover no-repeat;position:relative;overflow:hidden}

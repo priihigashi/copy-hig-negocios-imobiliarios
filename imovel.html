@@ -106,16 +106,20 @@ footer ul a:hover{color:var(--white)}
 .footer-bottom{background:rgba(0,0,0,.3);padding:.8rem 5%;display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.3)}
 @media(max-width:900px){.property-wrap{grid-template-columns:1fr}.contact-card{position:static}.prop-specs{grid-template-columns:repeat(2,1fr)}.similar-grid{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr;height:50vh}}
 @media(max-width:600px){.similar-grid{grid-template-columns:1fr}.gallery-thumb{display:none}.gallery{grid-template-columns:1fr;height:45vh}}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:48px;height:48px;min-width:48px;min-height:48px;cursor:pointer;background:none;border:none;padding:8px;z-index:201;-webkit-tap-highlight-color:transparent}
+.hamburger span{width:22px;height:2px;background:var(--white);display:block;transition:all .3s;transform-origin:center;border-radius:1px}
+.hamburger.open span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+.nav-dropdown{display:none;position:absolute;top:calc(100% + 4px);right:0;background:rgba(20,14,5,.97);backdrop-filter:blur(16px);min-width:190px;padding:.5rem 0;z-index:500;border-top:2px solid var(--gold);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.nav-dropdown.open{display:block}
+.nav-dropdown a{display:block;padding:.7rem 1.3rem;color:rgba(255,255,255,.8);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .15s,color .15s;white-space:nowrap}
+.nav-dropdown a:hover{background:rgba(154,107,47,.2);color:var(--white)}
+.nav-dropdown a.active{color:var(--gold)}
+.nav-dropdown .dropdown-cta{background:var(--gold);color:var(--white)!important;margin:.5rem .8rem .3rem;padding:.55rem 1rem;text-align:center;display:block;font-size:.76rem;letter-spacing:.1em}
+.nav-dropdown .dropdown-cta:hover{background:#7a5520!important}
 @media(max-width:768px){
   .nav-links{display:none!important}
-  .nav-cta,.nav-cta-wrap,nav>a.nav-cta,nav>button.nav-cta{display:none!important}
-  .hamburger{display:flex!important}
-  .logo{font-size:1.1rem!important;white-space:nowrap}
-  nav{padding:14px 4%!important}
-  .nav-dropdown{right:0;left:auto;min-width:180px;border-top:2px solid var(--gold)}
-  .nav-dropdown a{font-size:.78rem;padding:.65rem 1.2rem;letter-spacing:.08em}
-  .nav-dropdown .dropdown-cta{margin:.4rem .8rem 0;padding:.55rem .8rem;font-size:.75rem}
-}
   .nav-cta,.nav-cta-wrap,nav>a.nav-cta,nav>button.nav-cta{display:none!important}
   .hamburger{display:flex!important}
   .logo{font-size:1.1rem!important;white-space:nowrap}

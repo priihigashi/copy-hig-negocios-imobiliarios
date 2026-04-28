@@ -45,11 +45,14 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:20px 5%;display:flex;ali
 }}
 
 /* PAGE HERO */
-.page-hero{padding:140px 5% 60px;background:url('images/site_listings_hero.jpg') center/cover no-repeat;position:relative;overflow:hidden}
-.page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,20,9,.55) 0%,rgba(28,20,9,.88) 100%)}
-.page-hero .breadcrumb,.page-hero h1,.page-hero p{position:relative;z-index:1}
-.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:var(--white);letter-spacing:.05em;margin-bottom:.5rem}
-.page-hero p{color:rgba(255,255,255,.7);font-size:.9rem;letter-spacing:.08em}
+.page-hero{padding:200px 5% 110px;background:url('images/site_home_featured.jpg') center 30%/cover no-repeat;position:relative;overflow:hidden;min-height:480px;display:flex;flex-direction:column;justify-content:center}
+.page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(28,20,9,.78) 0%,rgba(28,20,9,.55) 60%,rgba(28,20,9,.30) 100%)}
+.page-hero::after{content:'';position:absolute;left:5%;bottom:46px;width:60px;height:1px;background:var(--gold);z-index:1}
+.page-hero .breadcrumb,.page-hero h1,.page-hero p,.page-hero .hero-tag{position:relative;z-index:1}
+.page-hero .hero-tag{display:inline-block;font-size:.72rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;font-weight:500}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:300;color:var(--white);letter-spacing:.04em;line-height:1.05;margin-bottom:1rem;max-width:720px}
+.page-hero h1 em{font-style:italic;color:#d9bf94;font-weight:400}
+.page-hero p{color:rgba(255,255,255,.78);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;font-weight:300}
 .breadcrumb{display:flex;gap:.5rem;align-items:center;margin-bottom:1.5rem;font-size:.78rem;color:rgba(255,255,255,.5);letter-spacing:.08em}
 .breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;text-transform:uppercase}
 .breadcrumb a:hover{color:var(--white)}
@@ -121,9 +124,11 @@ footer ul a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;tra
 footer ul a:hover{color:var(--white)}
 .footer-bottom{background:rgba(0,0,0,.3);padding:.8rem 5%;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:rgba(255,255,255,.3)}
 @media(max-width:768px){
-  .page-hero{padding:100px 6% 30px}
-  .page-hero h1{font-size:1.8rem;margin-bottom:.3rem}
-  .page-hero p{font-size:.8rem}
+  .page-hero{padding:130px 6% 60px;min-height:340px}
+  .page-hero h1{font-size:2.2rem;margin-bottom:.6rem;line-height:1.1}
+  .page-hero p{font-size:.78rem;letter-spacing:.14em}
+  .page-hero .hero-tag{font-size:.65rem;letter-spacing:.22em;margin-bottom:.7rem}
+  .page-hero::after{bottom:30px;width:48px}
   .breadcrumb{display:none}
   footer{grid-template-columns:1fr;gap:2rem}
   .grid{grid-template-columns:1fr}
@@ -166,8 +171,9 @@ footer ul a:hover{color:var(--white)}
     <span>/</span>
     <span>Imóveis</span>
   </div>
-  <h1>Imóveis Disponíveis</h1>
-  <p>Vale do Paraíba · São Paulo · Alto Padrão</p>
+  <span class="hero-tag">Vale do Paraíba · São Paulo</span>
+  <h1>Imóveis <em>Disponíveis</em></h1>
+  <p>Alto Padrão · Curadoria Pessoal · Visitas Agendadas</p>
 </div>
 
 <div class="filters-wrap">
@@ -252,8 +258,8 @@ footer ul a:hover{color:var(--white)}
         </button>
       </div>
       <div class="card-body">
-        <div class="card-type">Casa · Residencial</div>
-        <h3 class="card-title">Villa Contemporânea com Piscina</h3>
+        <div class="card-type">Casa · Condomínio Fechado</div>
+        <h3 class="card-title">Casa em Condomínio · Colinas do Paratehy Sul</h3>
         <div class="card-loc">
           <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Urbanova, São José dos Campos
@@ -261,7 +267,7 @@ footer ul a:hover{color:var(--white)}
         <div class="card-specs">
           <div class="card-spec">
             <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            320 m²
+            510 m²
           </div>
           <div class="card-spec">
             <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
@@ -269,7 +275,7 @@ footer ul a:hover{color:var(--white)}
           </div>
           <div class="card-spec">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
-            3 suítes
+            4 suítes
           </div>
           <div class="card-spec">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
@@ -278,8 +284,8 @@ footer ul a:hover{color:var(--white)}
         </div>
         <div class="card-footer">
           <div class="card-price">
-            R$ 2.850.000
-            <small>Ou consulte condições</small>
+            Sob consulta
+            <small>Mobiliada · Venda porteira fechada</small>
           </div>
           <a href="imovel.html" class="card-cta" onclick="event.stopPropagation()">Ver imóvel</a>
         </div>
@@ -296,20 +302,20 @@ footer ul a:hover{color:var(--white)}
         </button>
       </div>
       <div class="card-body">
-        <div class="card-type">Apartamento · Alto Padrão</div>
-        <h3 class="card-title">Cobertura Duplex Vista Panorâmica</h3>
+        <div class="card-type">Casa · Alto Padrão Mobiliada</div>
+        <h3 class="card-title">Casa em Condomínio Eco Park</h3>
         <div class="card-loc">
           <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Centro, São José dos Campos
+          Eco Park, Caçapava
         </div>
         <div class="card-specs">
-          <div class="card-spec"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>210 m²</div>
+          <div class="card-spec"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>257 m²</div>
           <div class="card-spec"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>3 quartos</div>
           <div class="card-spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>3 suítes</div>
-          <div class="card-spec"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>2 vagas</div>
+          <div class="card-spec"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>540 m² terreno</div>
         </div>
         <div class="card-footer">
-          <div class="card-price">R$ 1.980.000<small>Pronto para morar</small></div>
+          <div class="card-price">R$ 3.000.000<small>Mobiliada · Pronta para morar</small></div>
           <a href="imovel.html" class="card-cta" onclick="event.stopPropagation()">Ver imóvel</a>
         </div>
       </div>

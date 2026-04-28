@@ -1,0 +1,177 @@
+/* ==========================================================================
+   LISTINGS — single source of truth for all properties on the site
+   --------------------------------------------------------------------------
+   Architecture:
+   - One listing = one entry, keyed by slug (URL-safe id).
+   - `cover` is the card image on home + listings grid.
+   - `photos` is the gallery on imovel.html — each listing has its OWN photos,
+     never mixed with other listings' covers.
+   - `listed:true` = real, browsable property → gets "Ver Anúncio Completo"
+     button + dedicated detail page (imovel.html?id=<slug>).
+   - `listed:false` = template / dummy card on home (hides Ver Anúncio,
+     keeps WhatsApp). Will be replaced with real listings via the future
+     dashboard / Sanity CMS.
+
+   When adding a new listing later (manual or via dashboard):
+     1. Pick a slug (lowercase, hyphenated, unique).
+     2. Drop photos into images/listings/<slug>/ if you want a per-listing
+        folder structure (currently photos live flat in /images/).
+     3. Add the entry below — order in LISTINGS_ORDER controls homepage grid.
+     4. Set listed:true once detail page content is filled in.
+
+   Sandbox-to-live model (Wix-style):
+   - This file IS the source of truth. Editing here = editing every page that
+     reads from it (index.html, imoveis.html, imovel.html). No duplication,
+     no drift.
+   ========================================================================== */
+
+window.LISTINGS = {
+  /* ----------------------------------------------------------------------
+     REAL LISTINGS (listed:true)
+     ---------------------------------------------------------------------- */
+  'urbanova-paratehy': {
+    slug: 'urbanova-paratehy',
+    title: 'Casa em Condomínio · Colinas do Paratehy Sul',
+    location: 'São José dos Campos, SP',
+    locationFull: 'Urbanova, São José dos Campos — SP',
+    price: 'Sob consulta',
+    priceNote: 'Entre em contato para informações · Mobiliada · Venda porteira fechada',
+    area: '510',
+    terrain: '600',
+    q: '4', b: '6', v: '4',
+    suites: '4',
+    badge: 'Destaque · Mobiliada',
+    cover: 'images/site_listing_card_01.jpg',
+    photos: [
+      { src: 'images/site_property_gallery_01.jpg', caption: 'Fachada Principal' },
+      { src: 'images/site_property_gallery_02.jpg', caption: 'Sala de Estar' },
+      { src: 'images/site_property_gallery_03.jpg', caption: 'Área Externa' }
+    ],
+    desc: 'Casa de alto padrão em condomínio fechado nas Colinas do Paratehy Sul. 510 m² construídos · 600 m² de terreno · 4 suítes (master 88 m² com closet e banheira dupla) · sala cinema · lareira suspensa · cozinha gourmet · piscina · biometria · cisterna 8.000L. Mobiliada · venda porteira fechada.',
+    descParas: [
+      'Casa em condomínio localizada no Urbanova, em São José dos Campos — bairro estrategicamente próximo a comércios, escolas, shoppings e às principais vias de acesso da cidade.',
+      'Projeto de alto padrão com 600m² de terreno, 510m² de área construída e 50m² de terraço. Quatro suítes com varandas, sendo a master de 88m² com closet e banheira dupla. Sala de estar com pé direito duplo de 7 metros, sala íntima, sala de jantar, sala de cinema, escritório e lareira suspensa.',
+      'Cozinha gourmet equipada e área gourmet completa com churrasqueira, forno de pizza e som ambiente. Piscina, lavanderia planejada, garagem com 4 vagas e 2 hobby box. Venda porteira fechada — inclui móveis e eletrodomésticos.'
+    ],
+    features: [
+      'Suíte master 88m² com closet e banheira dupla',
+      '4 suítes com varandas',
+      'Sala de estar com pé direito duplo (7m)',
+      'Sala de cinema',
+      'Sala íntima e escritório',
+      'Lareira suspensa',
+      'Piscina',
+      'Cozinha gourmet equipada',
+      'Área gourmet · churrasqueira · forno de pizza · som ambiente',
+      'Lavabo em ônix importado',
+      'Escada em Travertino Romano',
+      'Iluminação em LED',
+      '2 TVs de 86 polegadas',
+      'Porta com biometria',
+      'Sistema de câmeras completo',
+      'Estrutura para aspiração central',
+      'Cisterna de 8.000 litros',
+      'Lavanderia planejada',
+      'Garagem 4 vagas + 2 hobby box',
+      'Venda porteira fechada'
+    ],
+    wa: 'Olá! Tenho interesse na Casa em Condomínio nas Colinas do Paratehy Sul (SJC). Podemos agendar uma visita?',
+    listed: true
+  },
+
+  'eco-park-cacapava': {
+    slug: 'eco-park-cacapava',
+    title: 'Casa em Condomínio Eco Park',
+    location: 'Caçapava, SP',
+    locationFull: 'Condomínio Eco Park Bourbon, Caçapava — SP',
+    price: 'R$ 3.000.000',
+    area: '257',
+    terrain: '540',
+    q: '3', b: '4', v: '4',
+    badge: 'Mobiliada · Pronta',
+    cover: 'images/site_listing_card_02.jpg',
+    photos: [
+      { src: 'images/site_listing_card_02.jpg', caption: 'Fachada' }
+    ],
+    desc: 'Casa de alto padrão totalmente mobiliada no Condomínio Eco Park Bourbon. 257 m² construídos · 540 m² de terreno · 3 suítes (master com closet) · automação completa · piscina privativa · escritório · sala pé-direito duplo · cozinha moderna · área gourmet. Pronta para morar.',
+    wa: 'Olá! Tenho interesse na Casa do Eco Park em Caçapava (R$ 3.000.000). Podemos agendar uma visita?',
+    listed: true
+  },
+
+  /* ----------------------------------------------------------------------
+     TEMPLATE / DUMMY (listed:false) — no detail page, WhatsApp only
+     ---------------------------------------------------------------------- */
+  'refugio-natural': {
+    slug: 'refugio-natural',
+    title: 'Refúgio Natural',
+    location: 'Guaratinguetá, SP',
+    price: 'R$ 1.900.000',
+    area: '320', q: '3', b: '3', v: '2',
+    badge: 'Oportunidade',
+    cover: 'images/site_listing_card_03.jpg',
+    photos: [],
+    desc: 'Casa cercada pela natureza, com materiais sustentáveis, painéis solares, captação de água da chuva e horta orgânica. Estilo vida interior em perfeita harmonia com o entorno natural.',
+    wa: 'Olá! Tenho interesse no Refúgio Natural em Guaratinguetá (R$ 1.900.000). Podemos agendar uma visita?',
+    listed: false
+  },
+
+  'mansao-horizonte': {
+    slug: 'mansao-horizonte',
+    title: 'Mansão Horizonte',
+    location: 'Pindamonhangaba, SP',
+    price: 'R$ 6.500.000',
+    area: '1.200', q: '6', b: '7', v: '5',
+    badge: 'Exclusivo',
+    cover: 'images/site_listing_card_10.jpg',
+    photos: [],
+    desc: 'Mansão icônica com arquitetura premiada, piscina de borda infinita, quadra de tênis, heliponto e vista de 360° para as montanhas do Vale do Paraíba.',
+    wa: 'Olá! Tenho interesse na Mansão Horizonte em Pindamonhangaba (R$ 6.500.000). Podemos agendar uma visita?',
+    listed: false
+  },
+
+  'casa-do-vale': {
+    slug: 'casa-do-vale',
+    title: 'Casa do Vale',
+    location: 'Lorena, SP',
+    price: 'R$ 3.100.000',
+    area: '520', q: '4', b: '4', v: '3',
+    badge: 'Novo',
+    cover: 'images/site_listing_card_11.jpg',
+    photos: [],
+    desc: 'Projeto moderno com fachada em pedra natural, cozinha gourmet integrada à sala, suíte master com closet e varanda privativos, piscina e quintal arborizado.',
+    wa: 'Olá! Tenho interesse na Casa do Vale em Lorena (R$ 3.100.000). Podemos agendar uma visita?',
+    listed: false
+  },
+
+  'quinta-paraiba': {
+    slug: 'quinta-paraiba',
+    title: 'Quinta Paraíba',
+    location: 'Jacareí, SP',
+    price: 'R$ 2.400.000',
+    area: '390', q: '4', b: '4', v: '2',
+    badge: 'Oportunidade',
+    cover: 'images/site_listing_card_09.jpg',
+    photos: [],
+    desc: 'Quinta colonial com charme e modernidade, pomar próprio, celeiro restaurado para entretenimento, área de lazer completa e acesso direto à represa.',
+    wa: 'Olá! Tenho interesse na Quinta Paraíba em Jacareí (R$ 2.400.000). Podemos agendar uma visita?',
+    listed: false
+  }
+};
+
+/* Order in homepage grid + listings page (left→right, top→bottom) */
+window.LISTINGS_ORDER = [
+  'urbanova-paratehy',
+  'eco-park-cacapava',
+  'refugio-natural',
+  'mansao-horizonte',
+  'casa-do-vale',
+  'quinta-paraiba'
+];
+
+/* Helper: get listing by slug from URL ?id= or fallback to default */
+window.getListingFromQuery = function(fallbackSlug) {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('id');
+  if (slug && window.LISTINGS[slug]) return window.LISTINGS[slug];
+  return window.LISTINGS[fallbackSlug] || null;
+};

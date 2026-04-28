@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Villa Contemporânea com Piscina — Hig Negócios Imobiliários</title>
-<meta name="description" content="Casa de alto padrão em Urbanova, São José dos Campos. 320m², 4 quartos, 3 suítes, piscina. Hig Negócios Imobiliários.">
+<title id="page-title">Casa em Condomínio · Colinas do Paratehy Sul — Hig Negócios Imobiliários</title>
+<meta name="description" id="page-desc" content="Casa de alto padrão em Urbanova, São José dos Campos. 510m² construídos, 4 suítes, piscina, sala de cinema. Venda porteira fechada. Hig Negócios Imobiliários.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -30,6 +30,41 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:20px 5%;display:flex;ali
 .gallery-more{position:absolute;inset:0;background:rgba(28,20,9,.6);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--white);letter-spacing:.1em;cursor:pointer;font-family:'Cormorant Garamond',serif}
 .gallery-btn{position:absolute;bottom:1.5rem;right:1.5rem;background:rgba(28,20,9,.7);color:var(--white);border:1px solid rgba(255,255,255,.2);padding:.5rem 1.2rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(4px);transition:.2s}
 .gallery-btn:hover{background:rgba(28,20,9,.9)}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(20,14,5,.97);overflow-y:auto}
+.lightbox.open{display:block}
+.lightbox-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5%;background:rgba(20,14,5,.96);backdrop-filter:blur(8px);z-index:5;border-bottom:1px solid rgba(154,107,47,.2)}
+.lightbox-title{font-family:'Cormorant Garamond',serif;color:var(--white);font-size:1.3rem;font-weight:300;letter-spacing:.04em}
+.lightbox-title small{display:block;font-family:'Inter',sans-serif;color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem;font-weight:400}
+.lightbox-close{background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--white);width:42px;height:42px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.lightbox-close:hover{background:var(--gold);border-color:var(--gold)}
+.lightbox-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;padding:8px 5% 5rem}
+.lightbox-tile{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;background:#2a1f12}
+.lightbox-tile img{width:100%;height:100%;object-fit:cover;transition:transform .4s,opacity .3s;opacity:.92}
+.lightbox-tile:hover img{transform:scale(1.04);opacity:1}
+.lightbox-tile-num{position:absolute;bottom:.6rem;left:.7rem;font-family:'Cormorant Garamond',serif;color:var(--white);font-size:.95rem;letter-spacing:.05em;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+
+/* ZOOM (single-image view) */
+.zoom{display:none;position:fixed;inset:0;z-index:1100;background:rgba(10,7,3,.985);align-items:center;justify-content:center}
+.zoom.open{display:flex}
+.zoom-img{max-width:92vw;max-height:84vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.zoom-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(28,20,9,.55);border:1px solid rgba(255,255,255,.18);color:var(--white);width:54px;height:54px;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:.2s;backdrop-filter:blur(6px)}
+.zoom-arrow:hover{background:var(--gold);border-color:var(--gold)}
+.zoom-prev{left:2%}
+.zoom-next{right:2%}
+.zoom-close{position:absolute;top:1.5rem;right:1.5rem;background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--white);width:42px;height:42px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.zoom-close:hover{background:var(--gold);border-color:var(--gold)}
+.zoom-counter{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;color:rgba(255,255,255,.7);font-size:.95rem;letter-spacing:.15em}
+.zoom-caption{position:absolute;bottom:3.6rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.85);font-size:.82rem;letter-spacing:.05em;max-width:80vw;text-align:center}
+@media(max-width:600px){
+  .lightbox-grid{grid-template-columns:repeat(2,1fr);gap:4px;padding:4px 3% 4rem}
+  .lightbox-head{padding:.9rem 4%}
+  .lightbox-title{font-size:1rem}
+  .zoom-arrow{width:44px;height:44px;font-size:1.1rem}
+  .zoom-img{max-width:96vw;max-height:78vh}
+}
+.gallery-btn,.gallery-more{cursor:pointer}
 
 /* MAIN CONTENT */
 .property-wrap{max-width:1100px;margin:0 auto;padding:3rem 5%;display:grid;grid-template-columns:1fr 360px;gap:3rem;align-items:start}
@@ -164,17 +199,7 @@ footer ul a:hover{color:var(--white)}
   </div>
 </nav>
 
-<div class="gallery">
-  <div class="gallery-main">
-    <img src="images/site_property_gallery_01.jpg" alt="Villa - Fachada Principal" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
-    <button class="gallery-btn">Ver todas as fotos (14)</button>
-  </div>
-  <div class="gallery-thumb"><img src="images/site_property_gallery_02.jpg" alt="Sala de Estar" style="width:100%;height:100%;object-fit:cover"></div>
-  <div class="gallery-thumb">
-    <img src="images/site_property_gallery_03.jpg" alt="Área Externa" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
-    <div class="gallery-more">+ 12 fotos</div>
-  </div>
-</div>
+<div class="gallery" id="gallery"></div>
 
 <div class="property-wrap">
   <div class="prop-left">
@@ -183,56 +208,35 @@ footer ul a:hover{color:var(--white)}
       <span>/</span>
       <a href="imoveis.html">Imóveis</a>
       <span>/</span>
-      <span>Villa Contemporânea</span>
+      <span id="bc-title">Casa em Condomínio · Colinas do Paratehy Sul</span>
     </div>
-    <span class="prop-badge">Destaque</span>
-    <h1 class="prop-title">Villa Contemporânea com Piscina e Vista para o Vale</h1>
+    <span class="prop-badge" id="prop-badge">Destaque · Mobiliada</span>
+    <h1 class="prop-title" id="prop-title">Casa em Condomínio · Colinas do Paratehy Sul</h1>
     <div class="prop-loc">
       <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Urbanova, São José dos Campos — SP
+      <span id="prop-loc-text">Urbanova, São José dos Campos — SP</span>
     </div>
 
-    <div class="prop-specs">
-      <div class="prop-spec"><div class="prop-spec-val">320</div><div class="prop-spec-lbl">m² construído</div></div>
-      <div class="prop-spec"><div class="prop-spec-val">4</div><div class="prop-spec-lbl">Quartos</div></div>
-      <div class="prop-spec"><div class="prop-spec-val">3</div><div class="prop-spec-lbl">Suítes</div></div>
-      <div class="prop-spec"><div class="prop-spec-val">4</div><div class="prop-spec-lbl">Vagas</div></div>
-    </div>
+    <div class="prop-specs" id="prop-specs"></div>
 
     <h2 class="section-title">Descrição</h2>
-    <div class="prop-desc">
-      <p>Residência de alto padrão localizada no exclusivo bairro Urbanova, em São José dos Campos, com vista privilegiada para a Serra da Mantiqueira. Projeto arquitetônico contemporâneo com acabamentos de primeira linha e atenção a cada detalhe.</p>
-      <p>A propriedade conta com ampla área de convivência integrada à área externa, piscina com deck em madeira nobre, churrasqueira gourmet e jardim paisagístico. O interior foi projetado para maximizar a entrada de luz natural, criando ambientes acolhedores e elegantes.</p>
-      <p>Localização estratégica próxima às melhores escolas, centros comerciais e vias de acesso rápido para São Paulo e Rio de Janeiro.</p>
-    </div>
+    <div class="prop-desc" id="prop-desc"></div>
 
-    <h2 class="section-title">Características</h2>
-    <div class="features-grid">
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Piscina com deck</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Churrasqueira gourmet</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Jardim paisagístico</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Piso em porcelanato 120x120</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Cozinha com ilha central</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Closet master</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Aquecimento solar</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Sistema de segurança</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Automação residencial</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Depósito e lavanderia</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Garagem coberta 4 carros</div>
-      <div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Vista para o vale</div>
-    </div>
+    <h2 class="section-title" id="features-heading">Características</h2>
+    <div class="features-grid" id="features-grid"></div>
 
     <h2 class="section-title">Localização</h2>
     <div class="map-placeholder">
       <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Urbanova, São José dos Campos — SP
+      <span id="map-loc-text">Urbanova, São José dos Campos — SP</span>
+      <small style="font-size:.7rem;color:var(--muted);letter-spacing:.04em;margin-top:.4rem">Endereço completo enviado após contato</small>
     </div>
   </div>
 
   <!-- STICKY CONTACT CARD -->
   <div class="contact-card">
-    <div class="prop-price">R$ 2.850.000</div>
-    <div class="prop-price-note">Ou consulte condições de financiamento</div>
+    <div class="prop-price" id="prop-price">Sob consulta</div>
+    <div class="prop-price-note" id="prop-price-note">Entre em contato para informações · Mobiliada · Venda porteira fechada</div>
     <label class="contact-label">Seu nome</label>
     <input class="contact-input" type="text" placeholder="Como posso te chamar?">
     <label class="contact-label">WhatsApp</label>
@@ -241,7 +245,7 @@ footer ul a:hover{color:var(--white)}
     <textarea class="contact-input contact-textarea" placeholder="Tenho interesse neste imóvel..."></textarea>
     <button class="btn-primary">Solicitar Informações</button>
     <div class="contact-divider">ou fale direto</div>
-    <a href="https://wa.me/5512999999999?text=Olá! Tenho interesse na Villa Contemporânea em Urbanova." class="btn-whatsapp" target="_blank">
+    <a id="btn-wa" href="https://wa.me/5512999999999" class="btn-whatsapp" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
       WhatsApp
     </a>
@@ -263,40 +267,9 @@ footer ul a:hover{color:var(--white)}
   <a href="contato.html" class="visit-cta-btn">Agendar Visita</a>
 </div>
 
-<section class="similar-section">
+<section class="similar-section" id="similar-section">
   <h2 class="section-title">Imóveis Similares</h2>
-  <div class="similar-grid">
-    <a href="imovel.html" style="text-decoration:none">
-      <div class="mini-card">
-        <div class="mini-card-img" style="padding:0;overflow:hidden"><img src="images/site_listing_card_06.jpg" alt="Casa em Condomínio" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="mini-card-body">
-          <div class="mini-card-title">Casa em Condomínio de Luxo</div>
-          <div class="mini-card-loc">Taubaté · 280 m² · 4 quartos</div>
-          <div class="mini-card-price">R$ 1.450.000</div>
-        </div>
-      </div>
-    </a>
-    <a href="imovel.html" style="text-decoration:none">
-      <div class="mini-card">
-        <div class="mini-card-img" style="padding:0;overflow:hidden"><img src="images/site_listing_card_09.jpg" alt="Casa Vista Vale" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="mini-card-body">
-          <div class="mini-card-title">Casa com Vista para o Vale</div>
-          <div class="mini-card-loc">Guaratinguetá · 380 m² · 5 quartos</div>
-          <div class="mini-card-price">R$ 3.200.000</div>
-        </div>
-      </div>
-    </a>
-    <a href="imovel.html" style="text-decoration:none">
-      <div class="mini-card">
-        <div class="mini-card-img" style="padding:0;overflow:hidden"><img src="images/site_listing_card_04.jpg" alt="Cobertura Duplex" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="mini-card-body">
-          <div class="mini-card-title">Cobertura Duplex Vista Panorâmica</div>
-          <div class="mini-card-loc">SJC Centro · 210 m² · 3 suítes</div>
-          <div class="mini-card-price">R$ 1.980.000</div>
-        </div>
-      </div>
-    </a>
-  </div>
+  <div class="similar-grid" id="similar-grid"></div>
 </section>
 
 <a href="https://wa.me/5512999999999" class="wa-float" target="_blank">
@@ -333,6 +306,165 @@ footer ul a:hover{color:var(--white)}
   <span>© 2026 HIG Negócios Imobiliários.</span>
   <span>CRECI-SP</span>
 </div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-head">
+    <div class="lightbox-title" id="lightbox-title">Casa em Condomínio · Colinas do Paratehy Sul<small id="lightbox-subtitle">São José dos Campos · 3 fotos</small></div>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fechar">✕</button>
+  </div>
+  <div class="lightbox-grid" id="lightbox-grid"></div>
+</div>
+
+<div class="zoom" id="zoom">
+  <button class="zoom-close" onclick="closeZoom()" aria-label="Fechar">✕</button>
+  <button class="zoom-arrow zoom-prev" onclick="zoomStep(-1)" aria-label="Anterior">‹</button>
+  <img id="zoom-img" class="zoom-img" src="" alt="">
+  <button class="zoom-arrow zoom-next" onclick="zoomStep(1)" aria-label="Próxima">›</button>
+  <div class="zoom-caption" id="zoom-caption"></div>
+  <div class="zoom-counter" id="zoom-counter"></div>
+</div>
+
+<script src="js/listings.js"></script>
+<script>
+/* Data-driven render — pulls listing by ?id= slug from LISTINGS catalog.
+   Default slug = urbanova-paratehy (so imovel.html with no query string still works). */
+const LISTING = window.getListingFromQuery('urbanova-paratehy');
+const PHOTOS = (LISTING && LISTING.photos && LISTING.photos.length) ? LISTING.photos : [{src: LISTING.cover, caption: LISTING.title}];
+let zoomIdx = 0;
+
+(function init(){
+  if(!LISTING) return;
+  const $ = id => document.getElementById(id);
+
+  /* Page meta */
+  $('page-title').textContent = LISTING.title + ' — Hig Negócios Imobiliários';
+  $('page-desc').setAttribute('content', LISTING.desc);
+
+  /* Hero copy */
+  $('bc-title').textContent = LISTING.title;
+  $('prop-badge').textContent = LISTING.badge;
+  $('prop-title').textContent = LISTING.title;
+  $('prop-loc-text').textContent = LISTING.locationFull || LISTING.location;
+  $('map-loc-text').textContent = LISTING.locationFull || LISTING.location;
+
+  /* Specs */
+  const specs = [
+    {val: LISTING.area, lbl: 'm² construído'},
+    LISTING.terrain ? {val: LISTING.terrain, lbl: 'm² terreno'} : null,
+    {val: LISTING.suites || LISTING.q, lbl: LISTING.suites ? 'Suítes' : 'Quartos'},
+    {val: LISTING.v, lbl: 'Vagas'}
+  ].filter(Boolean);
+  $('prop-specs').innerHTML = specs.map(s =>
+    `<div class="prop-spec"><div class="prop-spec-val">${s.val}</div><div class="prop-spec-lbl">${s.lbl}</div></div>`
+  ).join('');
+
+  /* Description */
+  const paras = LISTING.descParas && LISTING.descParas.length ? LISTING.descParas : [LISTING.desc];
+  $('prop-desc').innerHTML = paras.map(p => `<p>${p}</p>`).join('');
+
+  /* Features (hide section if listing has no features array) */
+  if(LISTING.features && LISTING.features.length){
+    $('features-grid').innerHTML = LISTING.features.map(f =>
+      `<div class="feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${f}</div>`
+    ).join('');
+  } else {
+    $('features-heading').style.display = 'none';
+    $('features-grid').style.display = 'none';
+  }
+
+  /* Price card */
+  $('prop-price').textContent = LISTING.price;
+  if(LISTING.priceNote) $('prop-price-note').textContent = LISTING.priceNote;
+
+  /* WhatsApp deep-link with listing-specific message */
+  $('btn-wa').href = 'https://wa.me/5512999999999?text=' + encodeURIComponent(LISTING.wa);
+
+  /* Hero gallery — main + 2 thumbs (whatever PHOTOS has, no padding from other listings) */
+  const gallery = $('gallery');
+  const totalPhotos = PHOTOS.length;
+  const main = PHOTOS[0];
+  const thumb1 = PHOTOS[1] || PHOTOS[0];
+  const thumb2 = PHOTOS[2] || PHOTOS[1] || PHOTOS[0];
+  const moreCount = Math.max(0, totalPhotos - 3);
+  gallery.innerHTML = `
+    <div class="gallery-main" onclick="openLightbox(0)">
+      <img src="${main.src}" alt="${main.caption}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+      <button class="gallery-btn" onclick="event.stopPropagation();openLightbox(0)">Ver todas as fotos (${totalPhotos})</button>
+    </div>
+    <div class="gallery-thumb" onclick="openLightbox(${PHOTOS[1]?1:0})"><img src="${thumb1.src}" alt="${thumb1.caption}" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="gallery-thumb" onclick="openLightbox(${PHOTOS[2]?2:(PHOTOS[1]?1:0)})">
+      <img src="${thumb2.src}" alt="${thumb2.caption}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+      ${moreCount > 0 ? `<div class="gallery-more">+ ${moreCount} fotos</div>` : ''}
+    </div>`;
+
+  /* Lightbox header */
+  $('lightbox-title').innerHTML = `${LISTING.title}<small id="lightbox-subtitle">${LISTING.location} · ${totalPhotos} foto${totalPhotos !== 1 ? 's' : ''}</small>`;
+
+  /* Lightbox grid (only this listing's photos — no contamination) */
+  $('lightbox-grid').innerHTML = PHOTOS.map((p,i)=>`
+    <div class="lightbox-tile" onclick="openZoom(${i})">
+      <img src="${p.src}" alt="${p.caption}" loading="lazy">
+      <div class="lightbox-tile-num">${String(i+1).padStart(2,'0')} · ${p.caption}</div>
+    </div>`).join('');
+
+  /* Imóveis Similares — show up to 3 OTHER listings (never the current one).
+     Real listings (listed:true) get a clickable link to their detail page;
+     dummy listings link to imoveis.html grid view. */
+  const others = window.LISTINGS_ORDER
+    .filter(slug => slug !== LISTING.slug)
+    .slice(0, 3)
+    .map(slug => window.LISTINGS[slug]);
+  $('similar-grid').innerHTML = others.map(L => {
+    const href = L.listed ? `imovel.html?id=${L.slug}` : 'imoveis.html';
+    return `<a href="${href}" style="text-decoration:none">
+      <div class="mini-card">
+        <div class="mini-card-img" style="padding:0;overflow:hidden"><img src="${L.cover}" alt="${L.title}" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="mini-card-body">
+          <div class="mini-card-title">${L.title}</div>
+          <div class="mini-card-loc">${L.location} · ${L.area} m² · ${L.q} quartos</div>
+          <div class="mini-card-price">${L.price}</div>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+})();
+
+function openLightbox(startIdx){
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(typeof startIdx==='number'){openZoom(startIdx);}
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function openZoom(i){
+  zoomIdx = i;
+  document.getElementById('zoom-img').src = PHOTOS[i].src;
+  document.getElementById('zoom-caption').textContent = PHOTOS[i].caption;
+  document.getElementById('zoom-counter').textContent = (i+1)+' / '+PHOTOS.length;
+  document.getElementById('zoom').classList.add('open');
+}
+function closeZoom(){
+  document.getElementById('zoom').classList.remove('open');
+}
+function zoomStep(delta){
+  zoomIdx = (zoomIdx + delta + PHOTOS.length) % PHOTOS.length;
+  openZoom(zoomIdx);
+}
+document.getElementById('zoom').addEventListener('click',e=>{
+  if(e.target.id==='zoom') closeZoom();
+});
+document.addEventListener('keydown',e=>{
+  const zoomOpen = document.getElementById('zoom').classList.contains('open');
+  const lbOpen = document.getElementById('lightbox').classList.contains('open');
+  if(e.key==='Escape'){zoomOpen?closeZoom():lbOpen&&closeLightbox();}
+  if(zoomOpen){
+    if(e.key==='ArrowRight') zoomStep(1);
+    if(e.key==='ArrowLeft') zoomStep(-1);
+  }
+});
+</script>
 
 <script>
 (function(){
